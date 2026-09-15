@@ -2821,6 +2821,317 @@ footer.site-footer {
   font-size: 10px;
 }
 
+/* ==================== SUCURSAL PICKER ==================== */
+.co-branches {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.co-branches:empty { display: none; }
+.co-branch {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 200ms, background 200ms;
+  background: rgba(20,17,16,0.3);
+  text-align: left;
+  color: var(--ink);
+}
+.co-branch:hover { border-color: var(--line-strong); }
+.co-branch.on { border-color: var(--accent); background: rgba(208,32,47,0.06); }
+.co-branch-carrier {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--line-strong);
+}
+.co-branch-carrier.andreani { background: #FFD100; color: #111; border-color: transparent; }
+.co-branch-carrier.correo { background: #0066B3; color: #fff; border-color: transparent; }
+.co-branch-carrier.oca { background: #EE1C25; color: #fff; border-color: transparent; }
+.co-branch-body { min-width: 0; }
+.co-branch-name {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.co-branch-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.co-branch-cost {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  align-self: center;
+}
+.co-branches::-webkit-scrollbar { width: 6px; }
+.co-branches::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+
+/* ==================== TRACKING MODAL ==================== */
+.track-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6,5,4,0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 220ms;
+}
+.track-modal.on { display: flex; opacity: 1; }
+.track-card {
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--ground);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 28px 22px 22px;
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  transform: translateY(20px) scale(0.98);
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.track-modal.on .track-card { transform: none; }
+.track-card-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: rgba(20,17,16,0.6);
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 200ms;
+}
+.track-card-close:hover { background: var(--accent); color: var(--ground); }
+.track-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 4px;
+}
+.track-lead {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.track-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.track-form input {
+  padding: 12px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--pill);
+  background: rgba(20,17,16,0.4);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  outline: none;
+  letter-spacing: 0.06em;
+  min-width: 0;
+}
+.track-form input::placeholder { color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; }
+.track-form input:focus { border-color: var(--accent); }
+.track-form button {
+  padding: 12px 18px;
+  border-radius: var(--pill);
+  background: var(--ink);
+  color: var(--ground);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0;
+}
+.track-form button:hover { background: var(--accent); color: var(--ink); }
+.track-hint {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.track-hint code {
+  background: rgba(255,255,255,0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+.track-result {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+.track-result[hidden] { display: none; }
+.track-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.track-order {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.track-order strong { color: var(--ink); font-weight: 800; letter-spacing: 0.08em; }
+.track-status-pill {
+  padding: 5px 12px;
+  border-radius: var(--pill);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(108,130,255,0.12);
+  border: 1px solid rgba(108,130,255,0.35);
+  color: var(--accent-2);
+}
+.track-status-pill.delivered {
+  background: rgba(107,204,127,0.12);
+  border-color: rgba(107,204,127,0.4);
+  color: #6BCC7F;
+}
+.track-carrier-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  background: rgba(20,17,16,0.3);
+}
+.track-carrier-row .co-branch-carrier { width: 32px; height: 32px; font-size: 11px; }
+.track-carrier-info { min-width: 0; }
+.track-carrier-info div:first-child {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.15;
+}
+.track-carrier-info div:last-child {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+.track-timeline {
+  position: relative;
+  padding-left: 26px;
+}
+.track-timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.track-step {
+  position: relative;
+  padding-bottom: 18px;
+}
+.track-step:last-child { padding-bottom: 0; }
+.track-step::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--ground);
+  transition: border-color 240ms, background 240ms;
+}
+.track-step.done::before {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(208,32,47,0.15);
+}
+.track-step.active::before {
+  border-color: var(--accent-2);
+  background: var(--accent-2);
+  box-shadow: 0 0 0 4px rgba(108,130,255,0.25);
+  animation: track-pulse 1.6s ease-in-out infinite;
+}
+@keyframes track-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(108,130,255,0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(108,130,255,0.08); }
+}
+.track-step-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.track-step-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.track-step-loc {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+.track-step.pending .track-step-title,
+.track-step.pending .track-step-loc { color: var(--ink-3); opacity: 0.5; }
+
 /* Overlap prevention: defensive rules */
 * { min-width: 0; }
 img, video { max-width: 100%; height: auto; }
@@ -3958,7 +4269,8 @@ button:active, .cta-button:active, .product-cta:active, .pdp-add:active, .cart-c
     <div>
       <h5>Ayuda</h5>
       <ul>
-        <li><a href="#">Envíos</a></li>
+        <li><a href="#" id="openTrackFooter">Seguí tu envío ↗</a></li>
+        <li><a href="#">Envíos y logística</a></li>
         <li><a href="#">Cambios y devoluciones</a></li>
         <li><a href="#">Guía de talles</a></li>
         <li><a href="#">Preguntas frecuentes</a></li>
@@ -4030,6 +4342,7 @@ button:active, .cta-button:active, .product-cta:active, .pdp-add:active, .cart-c
     <li><a href="#" data-close-menu>Accesorios</a></li>
     <li><a href="#" data-close-menu>Sale</a></li>
     <li><a href="#" data-close-menu>Mi cuenta</a></li>
+    <li><a href="#" data-close-menu id="openTrackMenu">Seguí tu envío ↗</a></li>
   </ul>
   <div class="mmenu-foot">
     <span>Te Al 436 · Tolhuin</span>
@@ -4038,6 +4351,34 @@ button:active, .cta-button:active, .product-cta:active, .pdp-add:active, .cart-c
     <a href="#">@bennz_gta →</a>
   </div>
 </aside>
+
+<!-- ==================== TRACKING MODAL ==================== -->
+<div class="track-modal" id="trackModal" role="dialog" aria-modal="true" aria-labelledby="trackTitle">
+  <div class="track-card">
+    <button type="button" class="track-card-close" id="closeTrack" aria-label="Cerrar">✕</button>
+    <div class="track-lead">Seguimiento en vivo</div>
+    <h2 class="track-title" id="trackTitle">¿Dónde está tu drop?</h2>
+    <p class="track-hint" style="margin-top:14px;">Ingresá tu número de orden Bennz o el tracking del correo. Probá con <code>BZ-24812</code>, <code>BZ-24815</code> o <code>ANDR-8842</code> para ver ejemplos.</p>
+    <form class="track-form" id="trackForm" autocomplete="off">
+      <input type="text" id="trackInput" placeholder="Número de orden o tracking" required>
+      <button type="submit">Buscar</button>
+    </form>
+    <div class="track-result" id="trackResult" hidden>
+      <div class="track-summary">
+        <div class="track-order">Orden <strong id="trackOrderNum">BZ-24812</strong></div>
+        <div class="track-status-pill" id="trackStatusPill">En camino</div>
+      </div>
+      <div class="track-carrier-row">
+        <div class="co-branch-carrier" id="trackCarrierIcon">A</div>
+        <div class="track-carrier-info">
+          <div id="trackCarrierName">Andreani</div>
+          <div id="trackCarrierMeta">Tracking · <span id="trackCarrierCode">—</span></div>
+        </div>
+      </div>
+      <div class="track-timeline" id="trackTimeline"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ==================== CART DRAWER ==================== -->
 <div class="overlay" id="overlay"></div>
@@ -4071,6 +4412,14 @@ button:active, .cta-button:active, .product-cta:active, .pdp-add:active, .cart-c
           </div>
           <span class="co-radio-price" id="shipPrice">—</span>
         </label>
+        <label class="co-radio">
+          <input type="radio" name="ship" value="branch">
+          <div class="co-radio-body">
+            <div class="co-radio-title">Retiro en sucursal · más barato</div>
+            <div class="co-radio-sub" id="branchSub">Andreani o Correo Argentino cerca tuyo</div>
+          </div>
+          <span class="co-radio-price" id="branchPrice">—</span>
+        </label>
       </div>
 
       <!-- CP calculator, shown when Envío is selected -->
@@ -4079,6 +4428,13 @@ button:active, .cta-button:active, .product-cta:active, .pdp-add:active, .cart-c
         <button type="button" id="cpCalc">Calcular</button>
       </div>
       <div class="co-quotes" id="cpQuotes"></div>
+
+      <!-- Sucursal picker, shown when Retiro en sucursal is selected -->
+      <div class="co-cp" id="branchCpBox" hidden>
+        <input type="text" inputmode="numeric" maxlength="8" placeholder="Tu código postal" id="branchCpInput">
+        <button type="button" id="branchCpFind">Buscar sucursales</button>
+      </div>
+      <div class="co-branches" id="branchList"></div>
     </div>
 
     <!-- Payment method selector -->
@@ -4379,7 +4735,65 @@ const PAY_METHODS = [
   { slug: "efectivo-local", name: "Efectivo en el local", meta: "Sólo con retiro en Te Al 436", installments: [1], pickupOnly: true },
 ];
 
-const co = { ship: "pickup", shipCost: 0, shipEta: null, shipCarrier: null, cp: "", pay: "mp-tarjeta" };
+const co = { ship: "pickup", shipCost: 0, shipEta: null, shipCarrier: null, cp: "", pay: "mp-tarjeta", branch: null };
+
+// ============ SUCURSALES (mock del catálogo real de Andreani + Correo Argentino + OCA) ============
+// En prod, esto viene de tu tabla `branches` en Supabase, sincronizada 1×/semana con:
+//   Andreani  → GET /v2/sucursales?codigoPostal={cp}
+//   Correo    → GET /branches?postalCode={cp}
+//   OCA       → GET /Sucursales/{cp}
+const BRANCH_DB = [
+  // Tolhuin / Río Grande / Ushuaia (Tierra del Fuego)
+  { cp: "9420", name: "Bennz Store · Te Al 436", carrier: "bennz",    hours: "Lun-Sáb 10-20 · Dom cerrado", loc: "Tolhuin — retirá gratis y sin costo de envío", cost: 0 },
+  { cp: "9420", name: "Correo Argentino Tolhuin", carrier: "correo",   hours: "Lun-Vie 9-16 · Sáb 9-13",   loc: "Los Ñires 355, Tolhuin", cost: 3200 },
+  { cp: "9410", name: "Andreani Ushuaia Centro",  carrier: "andreani", hours: "Lun-Vie 9-18 · Sáb 9-13",   loc: "Av. Maipú 826, Ushuaia", cost: 4800 },
+  { cp: "9410", name: "Correo Argentino Ushuaia", carrier: "correo",   hours: "Lun-Vie 8-17",              loc: "Av. Godoy 187, Ushuaia", cost: 3800 },
+  { cp: "9410", name: "OCA Ushuaia",              carrier: "oca",      hours: "Lun-Vie 9-18",              loc: "Rivadavia 259, Ushuaia", cost: 4500 },
+  { cp: "9420", name: "Andreani Río Grande",      carrier: "andreani", hours: "Lun-Vie 9-18 · Sáb 9-13",   loc: "Perito Moreno 1234, Río Grande", cost: 4400 },
+  // CABA (1000-1499)
+  { cp: "1414", name: "Andreani Palermo Soho",    carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 10-14",  loc: "Malabia 1466, CABA", cost: 3800 },
+  { cp: "1425", name: "Andreani Palermo Chico",   carrier: "andreani", hours: "Lun-Vie 9-19",              loc: "Cerviño 4620, CABA", cost: 3800 },
+  { cp: "1414", name: "Correo Argentino Palermo", carrier: "correo",   hours: "Lun-Vie 8-18 · Sáb 9-13",   loc: "Av. Santa Fe 3902, CABA", cost: 3200 },
+  { cp: "1043", name: "Andreani Microcentro",     carrier: "andreani", hours: "Lun-Vie 9-19",              loc: "Sarmiento 662, CABA", cost: 3800 },
+  { cp: "1043", name: "OCA Microcentro",          carrier: "oca",      hours: "Lun-Vie 9-18",              loc: "Corrientes 852, CABA", cost: 3600 },
+  { cp: "1414", name: "Andreani Belgrano R",      carrier: "andreani", hours: "Lun-Vie 9-19",              loc: "La Pampa 2200, CABA", cost: 3800 },
+  // GBA (1600-1900)
+  { cp: "1636", name: "Andreani Olivos",          carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 10-14",  loc: "Av. Maipú 2854, Olivos", cost: 4200 },
+  { cp: "1900", name: "Andreani La Plata Centro", carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 9-13",   loc: "Calle 12 nº 895, La Plata", cost: 4400 },
+  { cp: "1900", name: "Correo Argentino La Plata", carrier: "correo",  hours: "Lun-Vie 8-18",              loc: "Av. 7 nº 1042, La Plata", cost: 3600 },
+  // Córdoba (5000)
+  { cp: "5000", name: "Andreani Córdoba Nueva Cba", carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 9-13", loc: "Av. Poeta Lugones 452, Córdoba", cost: 4600 },
+  { cp: "5000", name: "Correo Argentino Cba Centro", carrier: "correo",  hours: "Lun-Vie 8-18",            loc: "Av. Colón 210, Córdoba", cost: 3800 },
+  { cp: "5000", name: "OCA Cba Nva Córdoba",       carrier: "oca",      hours: "Lun-Vie 9-18",              loc: "Ambrosio Olmos 820, Córdoba", cost: 4200 },
+  // Rosario (2000)
+  { cp: "2000", name: "Andreani Rosario Centro",  carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 9-13",   loc: "Córdoba 1560, Rosario", cost: 4500 },
+  { cp: "2000", name: "Correo Argentino Rosario", carrier: "correo",   hours: "Lun-Vie 8-18",              loc: "Buenos Aires 837, Rosario", cost: 3700 },
+  // Mendoza (5500)
+  { cp: "5500", name: "Andreani Mendoza Centro",  carrier: "andreani", hours: "Lun-Vie 9-19 · Sáb 9-13",   loc: "Av. San Martín 1200, Mendoza", cost: 5100 },
+  { cp: "5500", name: "OCA Mendoza",              carrier: "oca",      hours: "Lun-Vie 9-18",              loc: "Rivadavia 456, Mendoza", cost: 4800 },
+  // Bariloche / Neuquén (8400 / 8300)
+  { cp: "8400", name: "Andreani Bariloche",       carrier: "andreani", hours: "Lun-Vie 9-18 · Sáb 9-13",   loc: "Mitre 234, San Carlos de Bariloche", cost: 5400 },
+  { cp: "8300", name: "Andreani Neuquén",         carrier: "andreani", hours: "Lun-Vie 9-19",              loc: "Alaska 1420, Neuquén", cost: 5200 },
+  { cp: "8300", name: "Correo Argentino Neuquén", carrier: "correo",   hours: "Lun-Vie 8-17",              loc: "Rivadavia 260, Neuquén", cost: 4400 },
+];
+
+// Simple prefix-match: si el CP empieza con los mismos dígitos, mostralas
+function branchesForCp(cp) {
+  if (!/^\d{4,8}$/.test(cp)) return [];
+  const exact = BRANCH_DB.filter(b => b.cp === cp);
+  if (exact.length >= 3) return exact;
+  // Prefix con 2 dígitos (misma zona)
+  const prefix = cp.slice(0, 2);
+  const near = BRANCH_DB.filter(b => b.cp.startsWith(prefix) && !exact.includes(b));
+  return [...exact, ...near].slice(0, 8);
+}
+
+const CARRIER_META = {
+  bennz:    { letter: "B", label: "Bennz Store" },
+  andreani: { letter: "A", label: "Andreani" },
+  correo:   { letter: "C", label: "Correo Argentino" },
+  oca:      { letter: "O", label: "OCA" },
+};
 
 function totalWeight() {
   return state.cart.reduce((a,c) => a + 400 * c.qty, 0); // ~400g promedio por prenda
@@ -4395,14 +4809,32 @@ function renderRadios() {
     subEl.textContent = co.shipCarrier + " · " + co.shipEta;
   } else {
     priceEl.textContent = co.ship === "home" ? "—" : "$0";
-    subEl.textContent = co.ship === "home" ? "Ingresá tu CP para cotizar" : subEl.textContent;
+    subEl.textContent = co.ship === "home" ? "Ingresá tu CP para cotizar" : "Ingresá tu CP para cotizar";
+  }
+  // Branch (sucursal) pill state
+  const bPrice = $("#branchPrice");
+  const bSub = $("#branchSub");
+  if (bPrice && bSub) {
+    if (co.ship === "branch" && co.branch) {
+      bPrice.textContent = co.branch.cost === 0 ? "gratis" : fmt(co.branch.cost);
+      bSub.textContent = co.branch.name;
+    } else {
+      bPrice.textContent = co.ship === "branch" ? "—" : "desde $2.500";
+      bSub.textContent = co.ship === "branch" ? "Elegí tu sucursal más cercana" : "Andreani, Correo Argentino u OCA";
+    }
   }
 }
 function recomputeTotals() {
   const sub = currentSubtotal();
-  const ship = co.ship === "home" ? (co.shipCost || 0) : 0;
+  let ship = 0;
+  if (co.ship === "home") ship = co.shipCost || 0;
+  else if (co.ship === "branch") ship = co.branch ? co.branch.cost : 0;
   $("#cartSub").textContent = fmt(sub);
-  $("#cartShip").textContent = co.ship === "pickup" ? "Gratis (retiro)" : (co.shipCost != null ? (co.shipCost === 0 ? "Gratis" : fmt(co.shipCost)) : "—");
+  let shipLabel = "—";
+  if (co.ship === "pickup") shipLabel = "Gratis (retiro)";
+  else if (co.ship === "home") shipLabel = co.shipCost != null ? (co.shipCost === 0 ? "Gratis" : fmt(co.shipCost)) : "—";
+  else if (co.ship === "branch") shipLabel = co.branch ? (co.branch.cost === 0 ? "Gratis" : fmt(co.branch.cost)) : "—";
+  $("#cartShip").textContent = shipLabel;
   $("#cartTotal").textContent = fmt(sub + ship);
   renderRadios();
   // update cart note
@@ -4432,16 +4864,59 @@ function renderPayMethods() {
 $$("input[name=ship]").forEach(r => r.addEventListener("change", e => {
   co.ship = e.target.value;
   $("#cpBox").hidden = co.ship !== "home";
-  $("#cpQuotes").innerHTML = "";
+  $("#branchCpBox").hidden = co.ship !== "branch";
+  if (co.ship !== "home") $("#cpQuotes").innerHTML = "";
+  if (co.ship !== "branch") { $("#branchList").innerHTML = ""; co.branch = null; }
   if (co.ship === "home" && !co.shipCarrier) { co.shipCost = null; }
   if (co.ship === "pickup") { co.shipCost = 0; co.shipCarrier = "Retiro Te Al 436"; co.shipEta = "Listo en 24 hs"; }
-  // if we switched to home, dis-select pickup-only payments
+  // if we switched away from pickup, dis-select pickup-only payments
   const method = PAY_METHODS.find(m => m.slug === co.pay);
   if (method && method.pickupOnly && co.ship !== "pickup") { co.pay = "mp-tarjeta"; }
   renderPayMethods();
   recomputeTotals();
-  toast(co.ship === "pickup" ? "Retiro en local · Tolhuin" : "Envío a domicilio", "info");
+  const label = co.ship === "pickup" ? "Retiro en local · Tolhuin"
+              : co.ship === "home"   ? "Envío a domicilio"
+              : "Retiro en sucursal";
+  toast(label, "info");
 }));
+
+// Sucursal picker: buscar por CP
+$("#branchCpFind")?.addEventListener("click", () => {
+  const cp = ($("#branchCpInput").value || "").trim();
+  if (!/^\d{4,8}$/.test(cp)) return toast("Ingresá un CP válido (4 a 8 dígitos)", "warn");
+  const list = branchesForCp(cp);
+  const wrap = $("#branchList");
+  if (!list.length) {
+    wrap.innerHTML = `<div class="co-branch"><div></div><div class="co-branch-body"><div class="co-branch-name">No encontramos sucursales cerca de ese CP</div><div class="co-branch-meta">Probá con envío a domicilio o escribinos por WhatsApp</div></div><div></div></div>`;
+    return;
+  }
+  wrap.innerHTML = list.map((b, i) => {
+    const meta = CARRIER_META[b.carrier];
+    return `<button type="button" class="co-branch ${i === 0 ? 'on' : ''}" data-idx="${BRANCH_DB.indexOf(b)}">
+      <div class="co-branch-carrier ${b.carrier}">${meta.letter}</div>
+      <div class="co-branch-body">
+        <div class="co-branch-name">${b.name}</div>
+        <div class="co-branch-meta">${b.loc}<br>${b.hours}</div>
+      </div>
+      <div class="co-branch-cost">${b.cost === 0 ? "Gratis" : fmt(b.cost)}</div>
+    </button>`;
+  }).join("");
+  // auto-select first
+  co.branch = list[0];
+  co.cp = cp;
+  recomputeTotals();
+  toast(`${list.length} sucursales cerca de ${cp}`, "ok");
+});
+
+$("#branchList")?.addEventListener("click", e => {
+  const b = e.target.closest(".co-branch");
+  if (!b || !b.dataset.idx) return;
+  const idx = Number(b.dataset.idx);
+  co.branch = BRANCH_DB[idx];
+  $$("#branchList .co-branch").forEach(x => x.classList.remove("on"));
+  b.classList.add("on");
+  recomputeTotals();
+});
 
 $("#cpCalc")?.addEventListener("click", () => {
   const cp = ($("#cpInput").value || "").trim();
@@ -4502,9 +4977,106 @@ $("#payMethods")?.addEventListener("click", e => {
 $("#checkoutBtn").addEventListener("click", () => {
   if (!state.cart.length) return toast("Tu carrito está vacío", "warn");
   if (co.ship === "home" && !co.shipCarrier) return toast("Calculá el envío antes de pagar", "warn");
+  if (co.ship === "branch" && !co.branch) return toast("Elegí tu sucursal antes de pagar", "warn");
   const m = PAY_METHODS.find(x => x.slug === co.pay);
   const label = m.name.replace(/<[^>]+>/g, "").trim();
   toast(`Yendo a ${label}… (demo)`, "polar");
+});
+
+// ============ TRACKING MODAL ============
+// Mock DB: en prod estas órdenes vienen de tu tabla `orders` en Supabase +
+// llamada a Andreani / Correo Argentino / OCA para eventos en vivo.
+const TRACKING_DB = {
+  "BZ-24812": {
+    order: "BZ-24812",
+    carrier: "andreani",
+    tracking: "3800047812AR",
+    status: "En camino",
+    steps: [
+      { t: "Lun 08 Sep · 14:32", title: "Orden confirmada · pago acreditado", loc: "Bennz Store, Tolhuin", state: "done" },
+      { t: "Mar 09 Sep · 10:04", title: "Preparado y despachado", loc: "Andreani sucursal Ushuaia", state: "done" },
+      { t: "Mié 10 Sep · 07:48", title: "En centro de distribución", loc: "Andreani CD Buenos Aires (Malvinas Argentinas)", state: "done" },
+      { t: "Jue 11 Sep · 18:12", title: "En reparto · llega en el día", loc: "Sucursal destino · CABA Palermo", state: "active" },
+      { t: "—",                   title: "Entregado", loc: "—", state: "pending" },
+    ],
+  },
+  "BZ-24815": {
+    order: "BZ-24815",
+    carrier: "correo",
+    tracking: "CA482930187",
+    status: "Retirado",
+    statusClass: "delivered",
+    steps: [
+      { t: "Vie 05 Sep · 11:20", title: "Orden confirmada · pago acreditado", loc: "Bennz Store, Tolhuin", state: "done" },
+      { t: "Sáb 06 Sep · 09:15", title: "Despachado a Correo Argentino", loc: "Sucursal Tolhuin (Los Ñires 355)", state: "done" },
+      { t: "Lun 08 Sep · 16:44", title: "Disponible para retirar", loc: "Correo Argentino Palermo (Av. Santa Fe 3902)", state: "done" },
+      { t: "Mar 09 Sep · 12:08", title: "Retirado por el cliente", loc: "DNI verificado · firma electrónica", state: "done" },
+    ],
+  },
+  "ANDR-8842": {
+    order: "BZ-24818",
+    carrier: "andreani",
+    tracking: "ANDR-8842",
+    status: "En preparación",
+    steps: [
+      { t: "Jue 11 Sep · 20:14", title: "Orden confirmada · pago acreditado", loc: "Bennz Store, Tolhuin", state: "done" },
+      { t: "Vie 12 Sep · 09:30", title: "Etiqueta generada · listo para retiro", loc: "Andreani API · label creada", state: "active" },
+      { t: "—",                   title: "En camino", loc: "—", state: "pending" },
+      { t: "—",                   title: "Entregado", loc: "—", state: "pending" },
+    ],
+  },
+};
+
+const trackModal = $("#trackModal");
+function openTrack() { trackModal.classList.add("on"); document.body.style.overflow = "hidden"; setTimeout(() => $("#trackInput")?.focus(), 200); }
+function closeTrack() { trackModal.classList.remove("on"); document.body.style.overflow = ""; }
+$("#openTrackFooter")?.addEventListener("click", e => { e.preventDefault(); openTrack(); });
+$("#openTrackMenu")?.addEventListener("click", e => { e.preventDefault(); openTrack(); });
+$("#closeTrack")?.addEventListener("click", closeTrack);
+trackModal?.addEventListener("click", e => { if (e.target === trackModal) closeTrack(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && trackModal.classList.contains("on")) closeTrack(); });
+
+$("#trackForm")?.addEventListener("submit", e => {
+  e.preventDefault();
+  const q = ($("#trackInput").value || "").trim().toUpperCase();
+  if (!q) return;
+  const record = TRACKING_DB[q] || TRACKING_DB[Object.keys(TRACKING_DB).find(k => TRACKING_DB[k].tracking === q) || ""];
+  const resultEl = $("#trackResult");
+  if (!record) {
+    resultEl.hidden = false;
+    resultEl.innerHTML = `
+      <div style="text-align:center; padding:20px 0;">
+        <div style="font-family:var(--serif); font-size:20px; margin-bottom:8px;">Orden no encontrada</div>
+        <div style="font-family:var(--mono); font-size:11px; color:var(--ink-3); letter-spacing:0.06em;">Revisá tu número o probá con <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--ink);">BZ-24812</code>, <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--ink);">BZ-24815</code> o <code style="background:rgba(255,255,255,0.06);padding:1px 6px;border-radius:4px;color:var(--ink);">ANDR-8842</code>.</div>
+      </div>
+    `;
+    return;
+  }
+  // Restore original template structure if it was replaced
+  resultEl.innerHTML = `
+    <div class="track-summary">
+      <div class="track-order">Orden <strong id="trackOrderNum">${record.order}</strong></div>
+      <div class="track-status-pill ${record.statusClass || ''}" id="trackStatusPill">${record.status}</div>
+    </div>
+    <div class="track-carrier-row">
+      <div class="co-branch-carrier ${record.carrier}" id="trackCarrierIcon">${CARRIER_META[record.carrier].letter}</div>
+      <div class="track-carrier-info">
+        <div id="trackCarrierName">${CARRIER_META[record.carrier].label}</div>
+        <div id="trackCarrierMeta">Tracking · <span id="trackCarrierCode">${record.tracking}</span></div>
+      </div>
+    </div>
+    <div class="track-timeline" id="trackTimeline">
+      ${record.steps.map(s => `
+        <div class="track-step ${s.state}">
+          <div class="track-step-time">${s.t}</div>
+          <div class="track-step-title">${s.title}</div>
+          <div class="track-step-loc">${s.loc}</div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+  resultEl.hidden = false;
+  toast(`Orden ${record.order} · ${record.status}`, "ok");
 });
 
 // initial pickup state
